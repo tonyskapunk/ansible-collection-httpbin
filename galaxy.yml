@@ -1,0 +1,19 @@
+---
+namespace: tonyskapunk
+name: httpbin
+version: 1.0.0
+readme: README.md
+authors:
+  - Tony Garcia (@tonyskapunk)
+
+description: A collection of modules to interact with httpbin.org service or an httpbin self-hosted instance.
+license:
+  - GPL-3.0-or-later
+tags:
+  - httpbin
+  - http
+repository: https://github.com/tonyskapunk/ansible-collection-httpbin
+documentation: https://github.com/tonyskapunk/ansible-collection-httpbin
+homepage: https://github.com/tonyskapunk/ansible-collection-httpbin
+issues: https://github.com/tonyskapunk/ansible-collection-httpbin/issues
+build_ignore: []
