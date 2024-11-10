@@ -48,7 +48,7 @@ options:
         description: Headers to send in the request.
         required: false
         type: dict
-        default: 'accept: application/json'
+        default: {'accept: application/json'}
     ignore_certs:
         description: Ignore SSL certificates.
         required: false
@@ -168,8 +168,17 @@ response:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from requests import Request, Session, exceptions
+from ansible.module_utils.basic import missing_required_lib
 
+
+try:
+    from requests import Request, Session, exceptions
+except ImportError:
+    HAS_REQUESTS = False
+    REQUESTS_IMPORT_ERROR = traceback.format_exc()
+else:
+    HAS_REQUESTS = True
+    REQUESTS_IMPORT_ERROR = None
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -189,6 +198,9 @@ def run_module():
         ignore_certs=dict(type="bool", required=False, default=False),
         timeout=dict(type="int", required=False, default=15),
     )
+
+    # Fail if requests is not installed
+    module.fail_json(msg=missing_required_lib('requests'), exception=REQUESTS_IMPORT_ERROR)
 
     result = {}
 
