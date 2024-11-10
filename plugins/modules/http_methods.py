@@ -167,6 +167,8 @@ response:
       status: 200
 """
 
+import traceback
+
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.basic import missing_required_lib
 
