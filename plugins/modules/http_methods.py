@@ -182,6 +182,7 @@ else:
     HAS_REQUESTS = True
     REQUESTS_IMPORT_ERROR = None
 
+
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
@@ -200,14 +201,13 @@ def run_module():
         ignore_certs=dict(type="bool", required=False, default=False),
         timeout=dict(type="int", required=False, default=15),
     )
+    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     # Fail if requests is not installed
     if not HAS_REQUESTS:
         module.fail_json(msg=missing_required_lib('requests'), exception=REQUESTS_IMPORT_ERROR)
 
     result = {}
-
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if module.check_mode:
         module.exit_json(**result)
