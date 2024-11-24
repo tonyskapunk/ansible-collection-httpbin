@@ -202,7 +202,8 @@ def run_module():
     )
 
     # Fail if requests is not installed
-    module.fail_json(msg=missing_required_lib('requests'), exception=REQUESTS_IMPORT_ERROR)
+    if not HAS_REQUESTS:
+        module.fail_json(msg=missing_required_lib('requests'), exception=REQUESTS_IMPORT_ERROR)
 
     result = {}
 
