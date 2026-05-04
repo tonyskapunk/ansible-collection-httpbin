@@ -1,0 +1,35 @@
+---
+- name: Example of httpbin module
+  hosts: localhost
+  tasks:
+
+  - name: GET (default) request to httpbin
+    tonyskapunk.httpbin.http_methods:
+      query:
+        key1: value1
+        key2: value2
+  
+  - name: DELETE request to httpbin
+    tonyskapunk.httpbin.http_methods:
+      method: DELETE
+      data:
+        key: value
+
+  - name: PATCH request to httpbin
+    tonyskapunk.httpbin.http_methods:
+      method: PATCH
+
+  - name: POST request to httpbin
+    tonyskapunk.httpbin.http_methods:
+      method: POST
+      data:
+        key1: value1
+        key2: value2
+
+  - name: PUT request to httpbin
+    tonyskapunk.httpbin.http_methods:
+      method: PUT
+      data:
+        key1: value1
+      timeout: 1
+      
